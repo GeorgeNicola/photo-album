@@ -1,0 +1,44 @@
+Back End:
+- register, login users
+- save album
+
+
+
+Inspiration: canva.com
+
+
+Front End:
+- pages: Create Album, Register, Login, Landing Page, Step-by-step settings, My albums, Online Shop
+
+
+  
+*** Create Albums Functionality ***
+  
+Main:
+- 2 pages on screen
+- selected page = current page
+
+
+Navbar:
+- Current user
+- My albums
+- Buy Album
+- Btn: Album details ( nr pages, size, cover, page format )
+
+  
+Tabs: ( btn pentru a le restrange )
+- Pages: Preview on pages
+- Theme: Premade themes
+- Background: search for bg or color,
+- Upload photos: upload from pc
+- Photos: Search photos using Unsplash API
+- Elements: emojis, stickers etc
+
+Functions: 
+- prev / next Page
+- add, empty, delete Page
+- undo - redo
+
+Actions: 
+- Preview???
+- Save/Download ( with mail )
