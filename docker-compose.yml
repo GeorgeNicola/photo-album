@@ -1,0 +1,53 @@
+version: '1.0.0'
+services: 
+  api: 
+    container_name: express-api
+    build: ./api
+    environment:
+      - NODE_ENV=development
+      - POSTGRES_HOST=postgres-db
+      - POSTGRES_PORT=5432
+      - POSTGRES_DATABASE=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - MONGODB_URI=mongodb+srv://cluster0.kalq1wq.mongodb.net/
+      - MONGODB_USER=admin
+      - MONGODB_PASSWORD=admin
+    ports: 
+      - "8080:8080"
+  client:
+    container_name: client
+    build: ./client
+    ports: 
+      - "3030:3030"
+    stdin_open: true
+    tty: true
+  postgres-db:
+    container_name: postgres-db
+    image: "postgres"
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=nodepostgres
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    ports:
+      - '5555:5432'
+  mongo-db:
+    container_name: mongo-db
+    image: mongo
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=rootpassword
+    ports:
+      - 27017:27017
+    volumes:
+      - mongodb-data:/data/db
+
+volumes:
+  postgres-data:
+  mongodb-data:
+
+
+
