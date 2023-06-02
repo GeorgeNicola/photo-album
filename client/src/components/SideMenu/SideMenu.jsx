@@ -1,8 +1,8 @@
 import { useState } from "react";
 import "./SideMenu.scss";
 
-import SideMenuElement from "./SideMenuElement/SideMenuElement";
-import SideMenuActive from "./SideMenuActive/SideMenuActive";
+import SideMenuElement from "./SideMenuElement";
+import SideMenuActive from "./SideMenuActive";
 
 import { ReactComponent as DesignIcon } from "../../assets/icons/icon-design.svg";
 import { ReactComponent as ElementsIcon } from "../../assets/icons/icon-elements.svg";
