@@ -3,7 +3,7 @@ const cors = require("cors");
 const bodyParser = require("express").json;
 const routes = require("./routes");
 
-const connectMongoDB = require("./config/mongodb/mongoDB");
+const connectMongoDB = require("./config/mongoDB");
 connectMongoDB();
 
 // cors

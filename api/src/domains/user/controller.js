@@ -1,27 +1,28 @@
-const pool = require("../../config/postgresql/postgreSQL");
+const UserSchema = require("./model");
 
-const createUser = (req, res) => {
-  const { name, email, age } = req.body;
+const createUser = async (req, res) => {
+  try {
+    const { name, email, age } = req.body;
 
-  pool.query(
-    "INSERT INTO Users (name, email, age) VALUES ($1, $2, $3)",
-    [name, email, age],
-    (err) => {
-      if (err) {
-        throw err;
-      }
-      res.status(201).json({ status: "success", message: "User added." });
-    }
-  );
+    const user = new UserSchema({
+      name: name,
+      email: email,
+      age: age,
+    });
+
+    const doc = await user.save();
+
+    res.status(200).send(doc);
+  } catch (error) {
+    res.status(400).json(error);
+  }
 };
 
-const getAllUsers = (req, res) => {
-  pool.query("SELECT * FROM Users", (error, results) => {
-    if (error) {
-      throw error;
-    }
-    res.status(200).json(results.rows);
-  });
+const getAllUsers = async (req, res) => {
+  const results = await UserSchema.find().catch((error) =>
+    res.status(400).json({ error })
+  );
+  res.json(results);
 };
 
 module.exports = {

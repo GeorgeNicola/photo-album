@@ -1,6 +1,6 @@
 import "./Aside.scss";
 
-import SideMenu from "../SideMenu/SideMenu"
+import SideMenu from "../../components/SideMenu/SideMenu"
 
 function Aside() {
   return (
