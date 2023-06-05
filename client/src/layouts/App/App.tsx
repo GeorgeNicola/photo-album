@@ -8,8 +8,8 @@ import Aside from "../Aside/Aside"
 function App() {
   return (
     <div className="App">
-      <Header/>
-      <Aside/>
+      <Header />
+      <Aside />
     </div>
   )
 }

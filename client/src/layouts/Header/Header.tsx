@@ -1,10 +1,9 @@
-import { useState } from 'react'
 import "./Header.scss";
 
 function Header() {
   return (
     <header>
-        {"Header"}
+      {"Header"}
     </header>
   )
 }

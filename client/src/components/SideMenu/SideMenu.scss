@@ -1,12 +1,15 @@
-$side-menu-size: 70px;
-$active-element-color: hsla(0, 0%, 100%, .1);
+:root {
+    --side-menu-size: 70px;
+    --active-element-color: hsla(0, 0%, 100%, .1);
 
+    --active-element-id: 0;
+}
 
 .side-menu {
     position: relative;
 
     width: auto;
-    height: $side-menu-size;
+    height: var(--side-menu-size);
     background: linear-gradient(30deg, #18191b, #18191b);
 
     display: flex;
@@ -20,11 +23,11 @@ $active-element-color: hsla(0, 0%, 100%, .1);
         left: 0;
         top: 0;
 
-        width: $side-menu-size;
-        height: $side-menu-size;
+        width: var(--side-menu-size);
+        height: var(--side-menu-size);
         aspect-ratio: 1/1;
 
-        background-color: $active-element-color;
+        background-color: var(--active-element-color);
         transition: transform .25s ease-in-out, opacity .25s ease-in-out;
 
         opacity: 0;
@@ -32,13 +35,17 @@ $active-element-color: hsla(0, 0%, 100%, .1);
         transform: translateX(0%);
 
         pointer-events: none;
+
+        &[data-visible="true"] {
+            opacity: 1;
+        }
     }
 
     .side-menu-element {
-        width: $side-menu-size;
-        height: $side-menu-size;
-        min-height: $side-menu-size;
-        min-width: $side-menu-size;
+        width: var(--side-menu-size);
+        height: var(--side-menu-size);
+        min-height: var(--side-menu-size);
+        min-width: var(--side-menu-size);
 
         z-index: 1;
 
@@ -92,7 +99,7 @@ $active-element-color: hsla(0, 0%, 100%, .1);
 //Tablet & Desktop devices
 @media only screen and (min-width: 560px) {
     .side-menu {
-        width: $side-menu-size;
+        width: var(--side-menu-size);
         height: 100%;
         background: linear-gradient(30deg, #18191b, #18191b);
 
@@ -100,6 +107,8 @@ $active-element-color: hsla(0, 0%, 100%, .1);
         flex-direction: column;
 
         .side-menu-active {
+
+            transform: translateY(calc(var(--active-element-id) * 100%));
 
             &:before,
             &:after {
@@ -109,7 +118,7 @@ $active-element-color: hsla(0, 0%, 100%, .1);
                 right: 0;
                 top: -10px;
 
-                background: radial-gradient(circle closest-side, transparent 0, transparent 50%, $active-element-color 0) 200% 200% /400% 400%;
+                background: radial-gradient(circle closest-side, transparent 0, transparent 50%, var(--active-element-color) 0) 200% 200% /400% 400%;
                 height: 10px;
                 width: 10px;
                 overflow: hidden;
