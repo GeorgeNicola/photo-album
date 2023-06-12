@@ -1,4 +1,4 @@
-{
+const userData = {
     "username": "George",
     "albums": [
         {

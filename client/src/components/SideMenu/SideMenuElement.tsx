@@ -1,6 +1,6 @@
 import { useState, useEffect, FC } from "react";
 
-interface SideMenuElementInterface {
+interface Props {
   id: number;
   selectedId: number;
   handleSelectElement: Function;
@@ -8,12 +8,12 @@ interface SideMenuElementInterface {
   text: string;
 }
 
-function SideMenuElement({ id, selectedId, handleSelectElement, Icon, text }: SideMenuElementInterface) {
+function SideMenuElement({ id, selectedId, handleSelectElement, Icon, text }: Props) {
   const [active, setActive] = useState(false)
 
-  useEffect(() => setActive(id == selectedId), [selectedId])
-
   const clickEvent = () => handleSelectElement(id)
+
+  useEffect(() => setActive(id == selectedId), [selectedId])
 
   return (
     <button className="side-menu-element" data-active={active} onClick={clickEvent}>

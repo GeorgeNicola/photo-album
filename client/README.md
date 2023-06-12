@@ -9,6 +9,9 @@
 
 - Unit tests
 
+
+- Canvas generator: https://www.npmjs.com/package/fabric
+
 **_ Features _**
 
 - traducere

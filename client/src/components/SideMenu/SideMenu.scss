@@ -1,16 +1,15 @@
 :root {
-    --side-menu-size: 70px;
-    --active-element-color: hsla(0, 0%, 100%, .1);
-
     --active-element-id: 0;
 }
 
 .side-menu {
+    --side-menu-size: 70px;
+
     position: relative;
 
     width: auto;
     height: var(--side-menu-size);
-    background: linear-gradient(30deg, #18191b, #18191b);
+    background: var(--clr-bg-dark);
 
     display: flex;
     flex-direction: row;
@@ -27,14 +26,16 @@
         height: var(--side-menu-size);
         aspect-ratio: 1/1;
 
-        background-color: var(--active-element-color);
+        background-color: var(--clr-bg-light);
         transition: transform .25s ease-in-out, opacity .25s ease-in-out;
+
+        pointer-events: none;
 
         opacity: 0;
         transform: translateY(0%);
         transform: translateX(0%);
 
-        pointer-events: none;
+        transform: translateX(calc(var(--active-element-id) * 100%));
 
         &[data-visible="true"] {
             opacity: 1;
@@ -87,11 +88,6 @@
         svg {
             width: 1.5rem;
             fill: currentColor;
-
-
-
-            // 
-            // filter: red;
         }
     }
 }
@@ -101,7 +97,6 @@
     .side-menu {
         width: var(--side-menu-size);
         height: 100%;
-        background: linear-gradient(30deg, #18191b, #18191b);
 
         display: flex;
         flex-direction: column;
@@ -122,7 +117,6 @@
                 height: 10px;
                 width: 10px;
                 overflow: hidden;
-
             }
 
             &:after {

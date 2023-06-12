@@ -1,11 +1,11 @@
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 
-interface SideMenuActive {
-  id: number | null;
+interface Props {
+  id: number;
   isSelected: boolean;
 }
 
-function SideMenuActive({ id, isSelected }: SideMenuActive) {
+function SideMenuActive({ id, isSelected }: Props) {
 
   const setActiveElement = () => {
     document.documentElement.style.setProperty("--active-element-id", `${id}`);

@@ -1,20 +1,25 @@
-aside{
-    width:100vw;
-    height:auto;
-    overflow:hidden;
+aside {
+    width: 100vw;
+    height: auto;
+    overflow: hidden;
 
-    position:fixed;
-    bottom:0;
-    left:0;
-    z-index:0;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 0;
+
+    display: flex;
+    flex-direction: column-reverse;
+
 }
 
-@media only screen and (min-width: 560px){
-    aside{
-        width:auto;
+@media only screen and (min-width: 560px) {
+    aside {
+        width: auto;
         height: calc(100vh - 50px);
-    
-        position:relative;
+
+        position: absolute;
+        flex-direction: row;
     }
-    
+
 }
