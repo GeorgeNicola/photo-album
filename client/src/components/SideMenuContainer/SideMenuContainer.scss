@@ -1,5 +1,6 @@
 .side-menu-container {
-    position: relative;
+    position: absolute;
+    bottom: var(--side-menu-size);
 
     width: 0;
     height: 0;
@@ -18,6 +19,15 @@
     // animation-duration: 0.5s;
     // animation-iteration-count: 1;
     // transition: opacity 0.5s linear;
+
+    .side-menu-container__title {
+        color: rgb(219, 219, 219);
+        font-family: 'Rubik', sans-serif;
+    }
+
+    .content {
+        padding: 1rem 0;
+    }
 
     &[data-visible="true"] {
         display: block;
@@ -43,12 +53,15 @@
         height: 0;
         display: none;
 
+        left: var(--side-menu-size);
+        bottom: 0;
+
         border-radius: 0;
         border: none;
 
         &[data-visible="true"] {
             display: block;
-            width: 300px;
+            width: 30rem;
             height: 100%;
         }
     }

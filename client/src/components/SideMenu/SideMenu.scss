@@ -1,11 +1,11 @@
 :root {
     --active-element-id: 0;
+    --side-menu-size: 7rem;
 }
 
 .side-menu {
-    --side-menu-size: 70px;
-
     position: relative;
+    z-index: 5;
 
     width: auto;
     height: var(--side-menu-size);
@@ -64,7 +64,7 @@
         text-align: center;
         font-family: "Arial";
         font-weight: bold;
-        font-size: 0.625rem;
+        font-size: 1rem;
 
         transition: all 0.4s ease-out;
 
@@ -86,7 +86,7 @@
         }
 
         svg {
-            width: 1.5rem;
+            width: 2.5rem;
             fill: currentColor;
         }
     }

@@ -2,25 +2,26 @@ import { useState, FC } from "react";
 import "./Aside.scss";
 
 import { MenuElement } from "../../types";
-import { SideMenu, SideMenuContainer } from "../../components"
+import { SideMenu, SideMenuContainer, SideMenuElementsContainer } from "../../components"
 
 import { ReactComponent as DesignIcon } from "../../assets/icons/icon-design.svg";
 import { ReactComponent as ElementsIcon } from "../../assets/icons/icon-elements.svg";
 import { ReactComponent as UploadsIcon } from "../../assets/icons/icon-other.svg";
-import { ReactComponent as TextIcon } from "../../assets/icons/icon-projects.svg";
-import { ReactComponent as ProjectsIcon } from "../../assets/icons/icon-text.svg";
+import { ReactComponent as TextIcon } from "../../assets/icons/icon-text.svg";
+import { ReactComponent as ProjectsIcon } from "../../assets/icons/icon-projects.svg";
 import { ReactComponent as OtherIcon } from "../../assets/icons/icon-uploads.svg";
+
 
 const menuElements: MenuElement[] = [
   {
     name: "Design",
     icon: DesignIcon,
-    content: "Design Content"
+    content: <DesignIcon />
   },
   {
     name: "Elements",
     icon: ElementsIcon,
-    content: "Elements Content"
+    content: <SideMenuElementsContainer />
   },
   {
     name: "Uploads",

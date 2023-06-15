@@ -1,9 +1,9 @@
-import { FC } from "react";
+import { FC, ReactNode } from "react";
 
 interface MenuElement {
     name: string;
     icon: FC;
-    content: string;
+    content: string | ReactNode;
 }
 
 export default MenuElement;

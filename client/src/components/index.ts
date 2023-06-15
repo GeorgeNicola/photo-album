@@ -2,5 +2,17 @@ import SideMenu from './SideMenu/SideMenu';
 import SideMenuActive from './SideMenu/SideMenuActive';
 import SideMenuElement from './SideMenu/SideMenuElement';
 import SideMenuContainer from './SideMenuContainer/SideMenuContainer';
+import Album from './Album/Album';
+import AlbumPage from './AlbumPage/AlbumPage';
+import SideMenuElementsContainer from './SideMenuElementsContainer/SideMenuElementsContainer';
 
-export { SideMenu, SideMenuActive, SideMenuElement, SideMenuContainer }
+
+export {
+    SideMenu,
+    SideMenuActive,
+    SideMenuElement,
+    SideMenuContainer,
+    Album,
+    AlbumPage,
+    SideMenuElementsContainer
+}

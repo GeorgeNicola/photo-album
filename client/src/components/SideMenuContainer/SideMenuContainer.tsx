@@ -9,7 +9,7 @@ interface Props {
 function SideMenuContainer({ title, isVisible, children }: Props) {
     return (
         <div className="side-menu-container" data-visible={isVisible}>
-            <h3> {title} </h3>
+            <h3 className="side-menu-container__title"> {title} </h3>
             <div className="content">
                 {children}
             </div>

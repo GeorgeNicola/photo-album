@@ -1,0 +1,10 @@
+.album-page {
+    max-width: 100%;
+    max-height: 100%;
+    aspect-ratio: var(--album-page-aspect-ratio);
+    background-color: var(--album-page-background-color);
+
+    box-sizing: border-box;
+    border: 0.5rem solid var(--album-page-border-color);
+
+}

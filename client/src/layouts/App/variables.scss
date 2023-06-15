@@ -1,4 +1,19 @@
 :root {
     --clr-bg-dark: hsl(220, 5.88%, 10%);
     --clr-bg-light: hsl(210, 2.63%, 14.9%);
+
+    --aspect-ratio-1: 1 / 1;
+    --aspect-ratio-a5: 210 / 297;
+
+
+    --album-page-aspect-ratio: var(--aspect-ratio-a5);
+    --album-page-border-color: black;
+    --album-page-background-color: grey
 }
+
+html {
+    font-size: 10px
+}
+
+
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400&display=swap');
