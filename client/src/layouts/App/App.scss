@@ -1,9 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400&display=swap');
+
 body {
-    font-size: 16px;
+    background-color: var(--clr-neutral-100)
 }
 
 .app-content {
     width: 100%;
     height: calc(100vh - 5rem);
     display: flex;
+
+    font-family: var(--ff-body);
+    font-size: var(-fs-body);
 }

@@ -1,15 +1,15 @@
-import { useState, FC } from "react";
+import { useState } from "react";
 import "./Aside.scss";
 
-import { MenuElement } from "../../types";
-import { SideMenu, SideMenuContainer, SideMenuElementsContainer } from "../../components"
+import { MenuElement } from "types";
+import { SideMenu, SideMenuContainer, ContainerElements } from "components"
 
-import { ReactComponent as DesignIcon } from "../../assets/icons/icon-design.svg";
-import { ReactComponent as ElementsIcon } from "../../assets/icons/icon-elements.svg";
-import { ReactComponent as UploadsIcon } from "../../assets/icons/icon-other.svg";
-import { ReactComponent as TextIcon } from "../../assets/icons/icon-text.svg";
-import { ReactComponent as ProjectsIcon } from "../../assets/icons/icon-projects.svg";
-import { ReactComponent as OtherIcon } from "../../assets/icons/icon-uploads.svg";
+import { ReactComponent as DesignIcon } from "assets/icons/icon-design.svg";
+import { ReactComponent as ElementsIcon } from "assets/icons/icon-elements.svg";
+import { ReactComponent as UploadsIcon } from "assets/icons/icon-other.svg";
+import { ReactComponent as TextIcon } from "assets/icons/icon-text.svg";
+import { ReactComponent as ProjectsIcon } from "assets/icons/icon-projects.svg";
+import { ReactComponent as OtherIcon } from "assets/icons/icon-uploads.svg";
 
 
 const menuElements: MenuElement[] = [
@@ -21,7 +21,7 @@ const menuElements: MenuElement[] = [
   {
     name: "Elements",
     icon: ElementsIcon,
-    content: <SideMenuElementsContainer />
+    content: <ContainerElements />
   },
   {
     name: "Uploads",
@@ -62,8 +62,8 @@ function Aside() {
   }
 
   return (
-    <aside>
-      <SideMenu isSelected={isSelected} selectedId={selectedId} menuElements={menuElements} handleSelectElement={selectElement} />
+    <aside id="aside">
+      <SideMenu menuElements={menuElements} isSelected={isSelected} selectedId={selectedId} handleSelectElement={selectElement} />
       <SideMenuContainer title={menuElements[selectedId].name} isVisible={isSelected}> {menuElements[selectedId].content} </SideMenuContainer>
     </aside>
   )

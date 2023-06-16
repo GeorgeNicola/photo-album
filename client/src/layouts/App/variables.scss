@@ -1,19 +1,32 @@
 :root {
-    --clr-bg-dark: hsl(220, 5.88%, 10%);
-    --clr-bg-light: hsl(210, 2.63%, 14.9%);
+    --clr-primary-100: hsl(220, 5%, 10%);
+    --clr-primary-300: hsl(220, 5%, 15%);
 
-    --aspect-ratio-1: 1 / 1;
-    --aspect-ratio-a5: 210 / 297;
+    --clr-neutral-900: hsla(0, 0%, 0%, 1);
+    --clr-neutral-400: hsla(0, 0%, 60%, 1);
+    --clr-neutral-300: hsla(0, 0%, 80%, 1);
+    --clr-neutral-200: hsla(0, 0%, 90%, 1);
+    --clr-neutral-100: hsla(0, 0%, 100%, 1);
 
+    --clr-accent-100: hsl(161, 99%, 30%);
+    --clr-accent-300: hsl(161, 100%, 45%);
 
-    --album-page-aspect-ratio: var(--aspect-ratio-a5);
-    --album-page-border-color: black;
-    --album-page-background-color: grey
+    --ff-primary: 'Rubik', sans-serif;
+    --ff-secondary: 'Arial';
+
+    --ff-body: var(--ff-secondary);
+    --fs-body: 1rem;
 }
 
 html {
-    font-size: 10px
+    font-size: 10px;
 }
 
+html[data-theme="light"] {
+    --clr-primary-100: hsl(220, 5%, 30%);
+    --clr-primary-300: hsl(220, 5%, 50%);
 
-@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400&display=swap');
+    --clr-neutral-400: hsla(0, 0%, 90%, 1);
+    --clr-neutral-300: hsla(0, 0%, 80%, 1);
+    --clr-neutral-200: hsla(0, 0%, 90%, 1);
+}

@@ -1,14 +1,16 @@
 import { useEffect } from "react";
+import './SideMenuElementActive.scss'
 
 interface Props {
   id: number;
   isSelected: boolean;
 }
 
-function SideMenuActive({ id, isSelected }: Props) {
+function SideMenuElementActive({ id, isSelected }: Props) {
 
   const setActiveElement = () => {
-    document.documentElement.style.setProperty("--active-element-id", `${id}`);
+    let aside = document.querySelector("aside");
+    if (aside) aside.style.setProperty("--active-element-id", `${id}`);
   }
 
   useEffect(() => {
@@ -20,4 +22,4 @@ function SideMenuActive({ id, isSelected }: Props) {
   )
 }
 
-export default SideMenuActive
+export default SideMenuElementActive

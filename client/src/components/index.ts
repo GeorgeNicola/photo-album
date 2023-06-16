@@ -1,18 +1,23 @@
-import SideMenu from './SideMenu/SideMenu';
-import SideMenuActive from './SideMenu/SideMenuActive';
-import SideMenuElement from './SideMenu/SideMenuElement';
-import SideMenuContainer from './SideMenuContainer/SideMenuContainer';
-import Album from './Album/Album';
-import AlbumPage from './AlbumPage/AlbumPage';
-import SideMenuElementsContainer from './SideMenuElementsContainer/SideMenuElementsContainer';
+import {
+    SideMenu,
+    SideMenuElementActive,
+    SideMenuElement,
+    SideMenuContainer,
+} from 'components/SideMenu/components/'
+
+import { Album, AlbumPage, Element } from 'components/Album/components/';
+
+import ContainerElements from 'components/SideMenu/components/ContainerElements/ContainerElements'
+
 
 
 export {
     SideMenu,
-    SideMenuActive,
+    SideMenuElementActive,
     SideMenuElement,
     SideMenuContainer,
     Album,
     AlbumPage,
-    SideMenuElementsContainer
+    ContainerElements,
+    Element
 }

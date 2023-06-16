@@ -1,5 +1,6 @@
 .album-page {
-    max-width: 100%;
+    position: relative;
+    max-width: 90%;
     max-height: 100%;
     aspect-ratio: var(--album-page-aspect-ratio);
     background-color: var(--album-page-background-color);
