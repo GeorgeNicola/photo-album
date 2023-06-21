@@ -1,9 +1,7 @@
 import { FC, ReactNode } from "react";
 
-interface MenuElement {
+export type menuType = {
     name: string;
     icon: FC;
     content: string | ReactNode;
 }
-
-export default MenuElement;

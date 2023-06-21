@@ -5,8 +5,6 @@
 - Node + Express
 - MongoDB
 
-- Vite
-
 - Unit tests
 
 

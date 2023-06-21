@@ -1,8 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useContext } from 'react';
 import "./Header.scss";
+import { ThemeContext } from 'context';
+
 
 function Header() {
-  const [theme, setTheme] = useState("dark");
+  const { theme, setTheme } = useContext(ThemeContext)
 
   const toggleTheme = () => {
     if (theme === "dark") setTheme("light")
@@ -10,7 +12,7 @@ function Header() {
   }
 
   useEffect(() => {
-    document.documentElement.setAttribute('data-theme', theme);
+    document.documentElement.setAttribute('data-theme', theme ? theme : "dark");
   }, [theme])
 
   return (

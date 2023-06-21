@@ -1,5 +1,4 @@
 import "./AlbumPage.scss"
-
 import { Element } from 'components'
 
 interface Props {
@@ -8,8 +7,10 @@ interface Props {
 }
 
 const AlbumPage = ({ pageData, pageId }: Props) => {
+
     return (
-        <div className="album-page">
+        <div className="album-page album-page--animation">
+            <span>{pageId} </span>
             {
                 pageData.elements.map((elementData: any, i: number) =>
                     <Element key={i} pageId={pageId} elementId={i} element={elementData} />

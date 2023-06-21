@@ -27,6 +27,13 @@
         font-family: 'Rubik', sans-serif;
         font-size: 1.2rem;
         color: var(--clr-neutral-300);
+
+        height: calc(100% - 25px);
+        overflow-y: scroll;
+
+        img {
+            margin-bottom: 1rem;
+        }
     }
 
     &[data-visible="true"] {
