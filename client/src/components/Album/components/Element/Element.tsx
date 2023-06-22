@@ -1,8 +1,10 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useContext } from 'react';
 import './Element.scss';
 
-import interact from "interactjs";
+import { AlbumContext } from 'context';
+import { AlbumType } from 'types';
 
+import interact from "interactjs";
 
 interface Props {
     element: any;
@@ -11,6 +13,8 @@ interface Props {
 }
 
 const Element = ({ element, elementId, pageId }: Props) => {
+    const { album, setAlbum } = useContext(AlbumContext);
+
     const elementRef = useRef<HTMLImageElement>(null)
 
     const dragMoveListener = function (event: any) {
@@ -40,6 +44,8 @@ const Element = ({ element, elementId, pageId }: Props) => {
         // update the posiion attributes [%]
         target.setAttribute('data-x', percentageX);
         target.setAttribute('data-y', percentageY);
+
+        updateState()
     }
 
     const resizeMove = function (event: any) {
@@ -76,8 +82,9 @@ const Element = ({ element, elementId, pageId }: Props) => {
         // update the posiion attributes [px]
         target.setAttribute('data-x', percentageX);
         target.setAttribute('data-y', percentageY);
-    }
 
+        updateState()
+    }
 
     const initDraggable = (target: string) => {
         interact(target)
@@ -104,7 +111,6 @@ const Element = ({ element, elementId, pageId }: Props) => {
             .on('dragLeave', updateState)
     }
 
-
     const updateState = () => {
         console.log("Update State")
     }
@@ -123,7 +129,6 @@ const Element = ({ element, elementId, pageId }: Props) => {
                 .resizable(false)
         }
     }, [])
-
 
     if (element.type === "image") {
         return (

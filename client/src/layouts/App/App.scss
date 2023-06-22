@@ -9,6 +9,8 @@ body {
     height: calc(100vh - 5rem);
     display: flex;
 
+    position: relative;
+
     font-family: var(--ff-body);
     font-size: var(-fs-body);
 }
