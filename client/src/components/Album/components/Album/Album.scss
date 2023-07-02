@@ -8,14 +8,15 @@
     align-items: center;
     flex-direction: column;
 
-    background-color: var(--clr-neutral-100);
-}
+    background-color: var(--clr-neutral-400);
 
-.album-controls {
-    width: 100%;
-    padding: 0.5rem;
-    display: flex;
-    justify-content: center;
+    .album-controls {
+        width: 100%;
+        padding: 0.5rem;
+        display: flex;
+        justify-content: center;
+    }
+
 }
 
 .album {
@@ -24,7 +25,7 @@
 
     --album-page-aspect-ratio: var(--aspect-ratio-a5);
     --album-page-border-color: black;
-    --album-page-background-color: hsla(0, 0%, 90%, 1);
+    --album-page-background-color: hsl(30, 22.22%, 92.94%);
 }
 
 .album {

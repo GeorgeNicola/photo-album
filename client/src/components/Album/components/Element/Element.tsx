@@ -2,7 +2,7 @@ import { useEffect, useRef, useContext } from 'react';
 import './Element.scss';
 
 import { AlbumContext } from 'context';
-import { AlbumType } from 'types';
+
 
 import interact from "interactjs";
 
@@ -15,7 +15,7 @@ interface Props {
 const Element = ({ element, elementId, pageId }: Props) => {
     const { album, setAlbum } = useContext(AlbumContext);
 
-    const elementRef = useRef<HTMLImageElement>(null)
+    const elementRef = useRef<HTMLDivElement>(null)
 
     const dragMoveListener = function (event: any) {
         let target = event.target;
@@ -68,8 +68,9 @@ const Element = ({ element, elementId, pageId }: Props) => {
         target.style.height = (dataY + percentageHeight) + '%';
 
         // current transition
-        let x = event.x;
-        let y = event.y;
+        let x = 0;
+        let y = 0;
+        console.log("Resize event: ", event)
 
         // transform the transition from 'px' to '%'
         let percentageX = dataX + (x * 100) / parentWidth;
@@ -105,14 +106,21 @@ const Element = ({ element, elementId, pageId }: Props) => {
             })
             .resizable({
                 preserveAspectRatio: true,
-                edges: { left: true, right: true, bottom: true, top: true }
+                invert: 'none',
+                edges: { left: true, right: true, bottom: true, top: true },
+                // modifiers: [
+                //     interact.modifiers.restrictSize({
+                //         min: { width: 100, height: 100 },
+                //     })
+
+                // ]
             })
             .on('resizemove', resizeMove)
             .on('dragLeave', updateState)
     }
 
     const updateState = () => {
-        console.log("Update State")
+        // console.log("Update State")
     }
 
     useEffect(() => {
@@ -133,20 +141,23 @@ const Element = ({ element, elementId, pageId }: Props) => {
     if (element.type === "image") {
         return (
             <>
-                <img ref={elementRef} className="element-image" id="test" draggable="true"
-                    src={element.src}
+                <div ref={elementRef} className="element" draggable="true"
                     data-x={element.x}
                     data-y={element.y}
                     style={{
                         width: element.width,
                         height: element.height,
-                        position: "absolute",
                         left: element.x,
                         top: element.y,
-                        resize: "both",
-                        overflow: "auto"
                     }}
-                />
+                >
+                    <div className="snap-point snap-point--top-left"></div>
+                    <div className="snap-point snap-point--top-right"></div>
+                    <div className="snap-point snap-point--bottom-left"></div>
+                    <div className="snap-point snap-point--bottom-right"></div>
+
+                    <img className="element-image" src={element.src} />
+                </div>
             </>
         )
     }

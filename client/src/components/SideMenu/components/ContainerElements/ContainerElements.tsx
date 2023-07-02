@@ -7,8 +7,12 @@ const ContainerElements = () => {
 
     return (
         <div className="side-menu__elements side-menu--elements">
-            <Drag isDragging={true} src={image} />
-            <Drag isDragging={true} src={image2} />
+            <Drag isDragging={true} src={image}>
+                <img src={image} />
+            </Drag>
+            <Drag isDragging={true} src={image}>
+                <img src={image2} />
+            </Drag>
         </div>
     )
 }

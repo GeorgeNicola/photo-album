@@ -1,6 +1,7 @@
 import "./CssReset.scss"
 import "./variables.scss"
 import "./App.scss"
+import "./main.scss"
 
 import { useState } from 'react';
 
@@ -14,10 +15,14 @@ function App() {
     album: true,
   })
 
+  const togglePreviewDisplay = () => {
+    setDisplay(Object.assign({}, display, { preview: !display.preview }))
+  }
+
 
   return (
     <div className="App">
-      <Header display={display} setDisplay={setDisplay} />
+      <Header togglePreviewDisplay={togglePreviewDisplay} />
       <div className="app-content">
         {display.preview ? <Preview /> : null}
         <Aside />

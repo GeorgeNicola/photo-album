@@ -32,7 +32,7 @@ const AlbumPage = ({ pageData, pageId }: Props) => {
             type: "image",
             src: src,
             width: "50%",
-            height: "auto",
+            height: "20%",
             x: "0%",
             y: "0%"
         }
@@ -45,7 +45,7 @@ const AlbumPage = ({ pageData, pageId }: Props) => {
     }
 
     return (
-        <div className="album-page album-page--animation"
+        <div className="album-page"
             ref={drop}
             data-page={pageId}
             data-isover={isOver}

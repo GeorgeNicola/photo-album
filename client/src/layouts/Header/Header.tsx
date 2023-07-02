@@ -1,18 +1,44 @@
 import { useEffect, useContext } from 'react';
 import "./Header.scss";
-import { ThemeContext } from 'context';
+import { ThemeContext, AlbumContext } from 'context';
 
+type Props = {
+  togglePreviewDisplay: () => void;
+}
 
-function Header({ setDisplay, display }) {
+function Header({ togglePreviewDisplay }: Props) {
   const { theme, setTheme } = useContext(ThemeContext)
+  const { album, setAlbum } = useContext(AlbumContext)
+
+
+  const saveAlbum = async () => {
+    try {
+      let albumData = {
+        album: Object.assign({}, album)
+      }
+      let body = JSON.stringify(albumData);
+      let albumId = localStorage.getItem("albumId");
+
+
+      let response = await fetch(`http://localhost:5000/album/updateAlbum/${albumId}`, {
+        method: "POST",
+        headers: {
+          'Accept': 'application/json, text/plain, */*',
+          'Content-Type': 'application/json'
+        },
+        body: body,
+      })
+
+      let data = await response.json();
+      console.log("RESPONSE: ", data)
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   const toggleTheme = () => {
     if (theme === "dark") setTheme("light")
     else setTheme("dark")
-  }
-
-  const togglePreview = () => {
-    setDisplay(Object.assign({}, display, { preview: !display.preview }))
   }
 
   useEffect(() => {
@@ -21,8 +47,10 @@ function Header({ setDisplay, display }) {
 
   return (
     <header>
-      <button onClick={toggleTheme}> {theme == "dark" ? "Set Light Theme" : "Set Dark Theme"} </button>
-      <button onClick={togglePreview}> Toggle Preview </button>
+      <button className="button" onClick={toggleTheme}> {theme == "dark" ? "Set Light Theme" : "Set Dark Theme"} </button>
+      <button className="button button-accent" >NEW Album </button>
+      <button className="button button-accent" onClick={saveAlbum}> Save Album </button>
+      <button className="button button-accent" onClick={togglePreviewDisplay}>Preview </button>
     </header>
   )
 }

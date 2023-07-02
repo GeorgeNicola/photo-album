@@ -4,9 +4,21 @@
     max-height: 100%;
     aspect-ratio: var(--album-page-aspect-ratio);
     background-color: var(--album-page-background-color);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3), 0 0 300px 25px rgba(222, 198, 122, 0.7) inset;
+
+    //box-shadow generates inner and outer shadow
+    box-shadow:
+        0 0 10px rgba(0, 0, 0, 0.3), 0 0 300px 25px rgba(222, 198, 122, 0.7) inset,
+
+        0.6px 9.2px 5px rgba(0, 0, 0, 0.037),
+        1.5px 23.4px 12.7px rgba(0, 0, 0, 0.053),
+        3px 47.7px 25.9px rgba(0, 0, 0, 0.067),
+        6.2px 98.2px 53.3px rgba(0, 0, 0, 0.083),
+        17px 269px 146px rgba(0, 0, 0, 0.12);
+
 
     box-sizing: border-box;
-    border: 0.5rem solid var(--album-page-border-color);
+    border: 0.25rem solid var(--album-page-border-color);
 
     &[data-isover="true"] {
         border-color: red;
@@ -16,17 +28,3 @@
         background-color: lightgrey;
     }
 }
-
-// .album-page--animation {
-//     animation: fadeIn 2s;
-// }
-
-// @keyframes fadeIn {
-//     0% {
-//         opacity: 0;
-//     }
-
-//     100% {
-//         opacity: 1;
-//     }
-// }
