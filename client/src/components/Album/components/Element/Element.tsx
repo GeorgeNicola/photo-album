@@ -1,9 +1,7 @@
-import { useEffect, useRef, useContext } from 'react';
+import { useState, useEffect, useRef, useContext } from 'react';
 import './Element.scss';
 
 import { AlbumContext } from 'context';
-
-
 import interact from "interactjs";
 
 interface Props {
@@ -13,9 +11,10 @@ interface Props {
 }
 
 const Element = ({ element, elementId, pageId }: Props) => {
+    const [uniqueID, setUniqueID] = useState<string>(`page${pageId}-element${elementId}`)
     const { album, setAlbum } = useContext(AlbumContext);
-
     const elementRef = useRef<HTMLDivElement>(null)
+
 
     const dragMoveListener = function (event: any) {
         let target = event.target;
@@ -108,15 +107,19 @@ const Element = ({ element, elementId, pageId }: Props) => {
                 preserveAspectRatio: true,
                 invert: 'none',
                 edges: { left: true, right: true, bottom: true, top: true },
-                // modifiers: [
-                //     interact.modifiers.restrictSize({
-                //         min: { width: 100, height: 100 },
-                //     })
-
-                // ]
             })
             .on('resizemove', resizeMove)
             .on('dragLeave', updateState)
+    }
+
+    const initDraggableUniquePage = () => {
+        initDraggable(`#${uniqueID}`)
+    }
+
+    const removeDraggableUniquePage = () => {
+        interact(`#${uniqueID}`)
+            .draggable(false)
+            .resizable(false)
     }
 
     const updateState = () => {
@@ -124,24 +127,17 @@ const Element = ({ element, elementId, pageId }: Props) => {
     }
 
     useEffect(() => {
-        let uniqueID = `page${pageId}-element${elementId}`
-
-        if (elementRef.current != null) {
-            elementRef.current.id = uniqueID;
-            initDraggable(`#${uniqueID}`)
-        }
+        initDraggableUniquePage()
 
         return () => {
-            interact(`#${uniqueID}`)
-                .draggable(false)
-                .resizable(false)
+            removeDraggableUniquePage()
         }
     }, [])
 
     if (element.type === "image") {
         return (
             <>
-                <div ref={elementRef} className="element" draggable="true"
+                <div ref={elementRef} id={uniqueID} className="element" draggable="true"
                     data-x={element.x}
                     data-y={element.y}
                     style={{

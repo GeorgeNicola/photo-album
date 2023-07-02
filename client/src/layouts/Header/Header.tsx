@@ -1,6 +1,9 @@
 import { useEffect, useContext } from 'react';
 import "./Header.scss";
 import { ThemeContext, AlbumContext } from 'context';
+import { generateAlbum } from 'utils';
+import { useGenerateAlbum } from 'hooks';
+
 
 type Props = {
   togglePreviewDisplay: () => void;
@@ -10,6 +13,15 @@ function Header({ togglePreviewDisplay }: Props) {
   const { theme, setTheme } = useContext(ThemeContext)
   const { album, setAlbum } = useContext(AlbumContext)
 
+  const generateAlbumHandler = async () => {
+    let [albumData, error] = await generateAlbum();
+
+    if (error != null) console.log(error)
+    if (albumData) {
+      window.localStorage.setItem('albumId', albumData._id)
+      setAlbum(albumData)
+    }
+  }
 
   const saveAlbum = async () => {
     try {
@@ -48,7 +60,7 @@ function Header({ togglePreviewDisplay }: Props) {
   return (
     <header>
       <button className="button" onClick={toggleTheme}> {theme == "dark" ? "Set Light Theme" : "Set Dark Theme"} </button>
-      <button className="button button-accent" >NEW Album </button>
+      <button className="button button-accent" onClick={generateAlbumHandler}>NEW Album </button>
       <button className="button button-accent" onClick={saveAlbum}> Save Album </button>
       <button className="button button-accent" onClick={togglePreviewDisplay}>Preview </button>
     </header>

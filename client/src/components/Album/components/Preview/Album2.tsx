@@ -42,10 +42,10 @@ function Album2() {
     return (
 
         <div className="preview-container">
-            <div className="album-controls">
+            {/* <div className="album-controls">
                 <button onClick={prevPage}> Prev </button>
                 <button onClick={nextPage}> Next </button>
-            </div>
+            </div> */}
 
             <HTMLFlipBook
                 width={298}
