@@ -4,6 +4,7 @@ import { AlbumPage } from "../index";
 
 import { AlbumContext } from 'context';
 import { AlbumType } from 'types';
+import { createAlbum, loadAlbum } from 'utils';
 
 const Album = () => {
     const { album, setAlbum } = useContext(AlbumContext);
@@ -26,37 +27,20 @@ const Album = () => {
         else setVisiblePages(2)
     }
 
-    const createNewAlbum = () => {
-        fetch("http://localhost:5000/album/createAlbum/")
-            .then(response => response.json())
-            .then(data => {
-                setAlbum(data);
-                window.localStorage.setItem('albumId', data._id);
-            })
-            .catch(e => {
-                console.log(e)
-            })
-    }
-
-    const loadAlbum = () => {
+    const initAlbum = async () => {
         let albumId = localStorage.getItem("albumId");
 
         if (albumId === null) {
-            createNewAlbum()
+            createAlbum()
         } else {
-            fetch(`http://localhost:5000/album/getAlbum/${albumId}`)
-                .then(response => response.json())
-                .then(data => {
-                    setAlbum(data);
-                })
-                .catch(e => {
-                    console.log(e)
-                })
+            let [data, error] = await loadAlbum(albumId)
+            if (error) console.log("Error loading the album")
+            if (data) setAlbum(data);
         }
     }
 
     useEffect(() => {
-        loadAlbum();
+        initAlbum();
 
         resizeListenerHandler();
         window.addEventListener("resize", resizeListenerHandler);

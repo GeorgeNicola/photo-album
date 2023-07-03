@@ -20,9 +20,6 @@ const Drag: FC<Props> = ({ isDragging, src, children }) => {
         []
     )
     return (
-        // <div className="drag-element" ref={dragRef} style={{ opacity }}>
-        //     <img src={src} />
-        // </div>
         <div className="drag-element" ref={dragRef} style={{ opacity }}>
             {children}
         </div>

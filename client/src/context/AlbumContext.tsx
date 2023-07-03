@@ -16,7 +16,7 @@ export const AlbumContextProvider: FC<AlbumContextProviderProps> = ({ children }
     const [album, setAlbum] = useState<AlbumType | null>(null)
 
     useEffect(() => {
-        console.log("Album State: ", album)
+        console.log("Album State Provider: ", album)
     }, [album])
 
     return (

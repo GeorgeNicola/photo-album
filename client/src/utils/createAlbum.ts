@@ -1,14 +1,13 @@
 import { AlbumType } from "types"
 
-type returnType = {
-    data: AlbumType | null;
-    error: any;
-}
+type returnType = [AlbumType | null, null | any]
 
-const generateAlbum = async (): Promise<returnType> => {
+const createAlbum = async (): Promise<returnType> => {
     try {
         let response = await fetch("http://localhost:5000/album/createAlbum/")
         let data = await response.json()
+
+        window.localStorage.setItem('albumId', data._id)
 
         return [data, null]
     } catch (e) {
@@ -16,4 +15,4 @@ const generateAlbum = async (): Promise<returnType> => {
     }
 }
 
-export default generateAlbum
+export default createAlbum

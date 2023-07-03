@@ -1,5 +1,9 @@
-import generateAlbum from './generateAlbum'
+import createAlbum from './createAlbum'
+import saveAlbum from './saveAlbum'
+import loadAlbum from './loadAlbum'
 
 export {
-    generateAlbum
+    createAlbum,
+    saveAlbum,
+    loadAlbum
 }

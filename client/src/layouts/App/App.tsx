@@ -16,9 +16,8 @@ function App() {
   })
 
   const togglePreviewDisplay = () => {
-    setDisplay(Object.assign({}, display, { preview: !display.preview }))
+    setDisplay({ ...display, preview: !display.preview })
   }
-
 
   return (
     <div className="App">

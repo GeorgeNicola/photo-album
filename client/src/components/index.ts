@@ -9,7 +9,7 @@ import { Album, Album2, AlbumPage, Element } from 'components/Album/components/'
 
 
 import Drag from 'components/common/Drag'
-import Preview from 'components/Album/components/Preview/Album2';
+import Preview from 'components/Album/components/Preview/Preview';
 import ContainerElements from 'components/SideMenu/components/ContainerElements/ContainerElements'
 
 

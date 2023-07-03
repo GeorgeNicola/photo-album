@@ -1,5 +1,5 @@
 import React, { useContext, useRef } from 'react';
-import "./Album2.scss";
+import "./Preview.scss";
 
 import HTMLFlipBook from 'react-pageflip';
 
