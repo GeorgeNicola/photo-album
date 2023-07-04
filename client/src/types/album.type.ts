@@ -1,7 +1,7 @@
 import { PageType } from 'types'
 
 export type AlbumType = {
-    _id: string,
+    _id: any,
     albumId: string,
     albumName: string,
     currentPage: number,

@@ -31,7 +31,7 @@ const ContentUnsplash = () => {
             <div className="side-menu__elements side-menu--unsplash">
                 {
                     photos.map((photo, i) =>
-                        <Drag key={i} isDragging={true} src={photo}>
+                        <Drag key={photo} isDragging={true} src={photo}>
                             <img src={photo} />
                         </Drag>
                     )

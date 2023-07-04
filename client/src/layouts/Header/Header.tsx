@@ -1,8 +1,14 @@
-import { useEffect, useContext } from 'react';
+import { useState, useContext } from 'react';
 import "./Header.scss";
-import { ThemeContext, AlbumContext } from 'context';
+import { AlbumContext } from 'context';
 import { createAlbum, saveAlbum } from 'utils';
-import { useGenerateAlbum } from 'hooks';
+
+import { ThemeSwitch } from 'components'
+
+import Button from '@mui/material/Button';
+import LoadingButton from '@mui/lab/LoadingButton';
+import CreateIcon from '@mui/icons-material/Create';
+import SaveIcon from '@mui/icons-material/Save';
 
 
 type Props = {
@@ -10,40 +16,71 @@ type Props = {
 }
 
 function Header({ togglePreviewDisplay }: Props) {
-  const { theme, setTheme } = useContext(ThemeContext)
   const { album, setAlbum } = useContext(AlbumContext)
+  const [isLoadingNewAlbum, setIsLoadingNewAlbum] = useState<boolean>(false)
+  const [isLoadingSaveAlbum, setIsLoadingSaveAlbum] = useState<boolean>(false)
+
 
   const generateAlbumHandler = async () => {
+    setIsLoadingNewAlbum(true)
     let [albumData, error] = await createAlbum();
 
     if (error) console.log(error)
     if (albumData) setAlbum(albumData)
+
+    setIsLoadingNewAlbum(false)
   }
 
   const saveAlbumHandler = async () => {
     if (album == null) return
 
+    setIsLoadingSaveAlbum(true)
+
     let [albumData, error] = await saveAlbum(album);
 
     if (error) console.log(error)
     if (albumData) console.log("Album Saved")
-  }
 
-  const toggleTheme = () => {
-    if (theme === "dark") setTheme("light")
-    else setTheme("dark")
+    setIsLoadingSaveAlbum(false)
   }
-
-  useEffect(() => {
-    document.documentElement.setAttribute('data-theme', theme ? theme : "dark");
-  }, [theme])
 
   return (
     <header>
-      <button className="button" onClick={toggleTheme}> {theme == "dark" ? "Set Light Theme" : "Set Dark Theme"} </button>
-      <button className="button button-accent" onClick={generateAlbumHandler}>NEW Album </button>
+      <ThemeSwitch />
+
+      <LoadingButton
+        color="secondary"
+        onClick={generateAlbumHandler}
+        loading={isLoadingNewAlbum}
+        loadingPosition="start"
+        startIcon={<CreateIcon />}
+        variant="outlined"
+      >
+        <span>NEW Album</span>
+      </LoadingButton>
+
+      <LoadingButton
+        color="secondary"
+        onClick={saveAlbumHandler}
+        loading={isLoadingSaveAlbum}
+        loadingPosition="start"
+        startIcon={<SaveIcon />}
+        variant="outlined"
+      >
+        <span>Save Album</span>
+      </LoadingButton>
+
+      <Button
+        size="large"
+        onClick={togglePreviewDisplay}
+        variant="contained"
+      >
+        PREVIEW
+      </Button>
+
+      {/* <button className="button button-accent" onClick={generateAlbumHandler}>NEW Album </button>
       <button className="button button-accent" onClick={saveAlbumHandler}> Save Album </button>
-      <button className="button button-accent" onClick={togglePreviewDisplay}>Preview </button>
+      <button className="button button-accent" onClick={togglePreviewDisplay}>Preview </button> */}
     </header>
   )
 }

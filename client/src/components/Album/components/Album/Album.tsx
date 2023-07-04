@@ -6,6 +6,11 @@ import { AlbumContext } from 'context';
 import { AlbumType } from 'types';
 import { createAlbum, loadAlbum } from 'utils';
 
+import Button from '@mui/material/Button';
+import NavigateNextIcon from '@mui/icons-material/NavigateNext';
+import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
+
+
 const Album = () => {
     const { album, setAlbum } = useContext(AlbumContext);
     const [visiblePages, setVisiblePages] = useState<number>(2);
@@ -31,7 +36,9 @@ const Album = () => {
         let albumId = localStorage.getItem("albumId");
 
         if (albumId === null) {
-            createAlbum()
+            let [data, error] = await createAlbum();
+            if (error) console.log("Error Creating the album")
+            if (data) setAlbum(data);
         } else {
             let [data, error] = await loadAlbum(albumId)
             if (error) console.log("Error loading the album")
@@ -54,8 +61,20 @@ const Album = () => {
     return (
         <div className="album-wrapper">
             <div className="album-controls">
-                <button onClick={() => goPage(album.currentPage - visiblePages)}> Prev </button>
-                <button onClick={() => goPage(album.currentPage + visiblePages)}> Next </button>
+                <Button
+                    variant="contained"
+                    size="small"
+                    startIcon={<NavigateBeforeIcon />}
+                    onClick={() => goPage(album.currentPage - visiblePages)}>
+                    <span>Prev Page</span>
+                </Button>
+                <Button
+                    variant="contained"
+                    size="small"
+                    startIcon={<NavigateNextIcon />}
+                    onClick={() => goPage(album.currentPage + visiblePages)}>
+                    <span>Next Page</span>
+                </Button>
             </div>
 
             <div className="album" data-current={album.currentPage}>

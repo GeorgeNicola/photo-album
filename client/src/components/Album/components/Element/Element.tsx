@@ -2,7 +2,7 @@ import { useEffect, useRef, useContext } from 'react';
 import './Element.scss';
 
 import { AlbumContext } from 'context';
-import { AlbumType } from 'types';
+import { AlbumType, ElementType } from 'types';
 import interact from "interactjs";
 
 interface Props {
@@ -113,12 +113,7 @@ const Element = ({ element, elementId, pageId }: Props) => {
                 // keep the element within the area of it's parent
                 inertia: true,
 
-                modifiers: [
-                    interact.modifiers.restrictRect({
-                        restriction: '.album-page',
-                        endOnly: true
-                    })
-                ],
+
                 autoScroll: true,
                 listeners: {
                     move: dragMoveListener
@@ -148,7 +143,9 @@ const Element = ({ element, elementId, pageId }: Props) => {
         if (updateStateTimeout != null) clearTimeout(updateStateTimeout)
 
         updateStateTimeout = setTimeout(() => {
-            setAlbum((prevAlbum: AlbumType): AlbumType => {
+
+            setAlbum((prevAlbum): AlbumType => {
+
                 let newAlbum = { ...prevAlbum }
                 let currentElement = newAlbum.pages[pageId].elements[elementId]
 

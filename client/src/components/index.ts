@@ -16,7 +16,7 @@ import {
 
 
 import Drag from 'components/common/Drag/Drag'
-
+import ThemeSwitch from 'components/ThemeSwitch/ThemeSwitch'
 
 export {
     SideMenu,
@@ -29,5 +29,6 @@ export {
     ContentUnsplash,
     Element,
     Preview,
-    Drag
+    Drag,
+    ThemeSwitch
 }
