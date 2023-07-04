@@ -1,6 +1,7 @@
 import { AlbumType } from "types"
 
 const albumData: AlbumType = {
+    _id: 'awdawd',
     albumId: "1",
     albumName: "Test",
     currentPage: 0,

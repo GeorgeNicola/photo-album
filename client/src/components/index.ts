@@ -3,15 +3,19 @@ import {
     SideMenuElementActive,
     SideMenuElement,
     SideMenuContainer,
+    ContentElements,
+    ContentUnsplash
 } from 'components/SideMenu/components/'
 
-import { Album, Album2, AlbumPage, Element } from 'components/Album/components/';
+import {
+    Album,
+    Preview,
+    AlbumPage,
+    Element
+} from 'components/Album/components/';
 
 
-import Drag from 'components/common/Drag'
-import Preview from 'components/Album/components/Preview/Preview';
-import ContainerElements from 'components/SideMenu/components/ContainerElements/ContainerElements'
-
+import Drag from 'components/common/Drag/Drag'
 
 
 export {
@@ -21,7 +25,8 @@ export {
     SideMenuContainer,
     Album,
     AlbumPage,
-    ContainerElements,
+    ContentElements,
+    ContentUnsplash,
     Element,
     Preview,
     Drag

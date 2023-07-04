@@ -1,0 +1,12 @@
+.drag-element {
+
+    transition: all 0.25s ease-out;
+
+    &:hover {
+        cursor: pointer;
+    }
+
+    &:active {
+        transform: scale(0.95);
+    }
+}

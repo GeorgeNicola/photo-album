@@ -1,7 +1,8 @@
-import { useState, useEffect, useRef, useContext } from 'react';
+import { useEffect, useRef, useContext } from 'react';
 import './Element.scss';
 
 import { AlbumContext } from 'context';
+import { AlbumType } from 'types';
 import interact from "interactjs";
 
 interface Props {
@@ -11,9 +12,10 @@ interface Props {
 }
 
 const Element = ({ element, elementId, pageId }: Props) => {
-    const [uniqueID, setUniqueID] = useState<string>(`page${pageId}-element${elementId}`)
     const { album, setAlbum } = useContext(AlbumContext);
     const elementRef = useRef<HTMLDivElement>(null)
+    const uniqueID: string = `page${pageId}-element${elementId}`;
+    let updateStateTimeout: any = null;
 
 
     const dragMoveListener = function (event: any) {
@@ -36,15 +38,22 @@ const Element = ({ element, elementId, pageId }: Props) => {
         let percentageX = dataX + (x * 100) / parentWidth;
         let percentageY = dataY + (y * 100) / parentHeight;
 
+        // calc updated positions
+        let left = percentageX + "%";
+        let top = percentageY + "%"
+
         // translate the element [%]
-        target.style.left = percentageX + "%";
-        target.style.top = percentageY + "%"
+        target.style.left = left;
+        target.style.top = top;
 
         // update the posiion attributes [%]
         target.setAttribute('data-x', percentageX);
         target.setAttribute('data-y', percentageY);
 
-        updateState()
+        updateState({
+            x: left,
+            y: top,
+        })
     }
 
     const resizeMove = function (event: any) {
@@ -62,28 +71,40 @@ const Element = ({ element, elementId, pageId }: Props) => {
         let percentageWidth = (event.rect.width * 100) / parentWidth;
         let percentageHeight = (event.rect.height * 100) / parentHeight;
 
+        // calc updated sizes
+        let width = (dataX + percentageWidth) + '%';
+        let height = (dataY + percentageHeight) + '%';
+
         // update the element's style
-        target.style.width = (dataX + percentageWidth) + '%';
-        target.style.height = (dataY + percentageHeight) + '%';
+        target.style.width = width;
+        target.style.height = height;
 
         // current transition
         let x = 0;
         let y = 0;
-        console.log("Resize event: ", event)
 
         // transform the transition from 'px' to '%'
         let percentageX = dataX + (x * 100) / parentWidth;
         let percentageY = dataY + (y * 100) / parentHeight;
 
+        // calc updated positions
+        let left = percentageX + "%";
+        let top = percentageY + "%"
+
         // translate the element [%]
-        target.style.left = percentageX + "%";
-        target.style.top = percentageY + "%";
+        target.style.left = left;
+        target.style.top = top;
 
         // update the posiion attributes [px]
-        target.setAttribute('data-x', percentageX);
-        target.setAttribute('data-y', percentageY);
+        target.setAttribute('data-x', left);
+        target.setAttribute('data-y', top);
 
-        updateState()
+        updateState({
+            x: left,
+            y: top,
+            width: width,
+            height: height,
+        })
     }
 
     const initDraggable = (target: string) => {
@@ -104,7 +125,6 @@ const Element = ({ element, elementId, pageId }: Props) => {
                 }
             })
             .resizable({
-                preserveAspectRatio: true,
                 invert: 'none',
                 edges: { left: true, right: true, bottom: true, top: true },
             })
@@ -122,8 +142,40 @@ const Element = ({ element, elementId, pageId }: Props) => {
             .resizable(false)
     }
 
-    const updateState = () => {
-        // console.log("Update State")
+    const updateState = ({ x, y, width, height }: { [key: string]: string | null }) => {
+
+        //DEBOUNCE: reduce the amout of state updates
+        if (updateStateTimeout != null) clearTimeout(updateStateTimeout)
+
+        updateStateTimeout = setTimeout(() => {
+            setAlbum((prevAlbum: AlbumType): AlbumType => {
+                let newAlbum = { ...prevAlbum }
+                let currentElement = newAlbum.pages[pageId].elements[elementId]
+
+                //Set the new position
+                if (x && y) {
+                    currentElement = {
+                        ...currentElement,
+                        x: x,
+                        y: y,
+                    }
+                }
+
+                //Set the new dimension
+                if (width && height) {
+                    currentElement = {
+                        ...currentElement,
+                        width: width,
+                        height: height
+                    }
+                }
+
+                //Update the new state 
+                newAlbum.pages[pageId].elements[elementId] = currentElement;
+
+                return newAlbum
+            })
+        }, 250)
     }
 
     useEffect(() => {

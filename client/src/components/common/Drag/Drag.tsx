@@ -1,3 +1,4 @@
+import './Drag.scss';
 import { FC } from 'react';
 
 import { useDrag } from 'react-dnd'

@@ -32,16 +32,17 @@ const AlbumPage = ({ pageData, pageId }: Props) => {
             type: "image",
             src: src,
             width: "50%",
-            height: "20%",
-            x: "0%",
-            y: "0%"
+            height: "auto",
+            x: "25%",
+            y: "30%"
         }
 
-        const newState: AlbumType = Object.assign({}, album);
-        newState.pages[pageId].elements.push(newElement)
+        setAlbum((prevAlbum: AlbumType): AlbumType => {
+            let newAlbum = { ...prevAlbum }
+            newAlbum.pages[pageId].elements.push(newElement)
 
-        console.log(`Element ${newElement.type} dropped in page ${pageId}`)
-        setAlbum(newState)
+            return newAlbum
+        })
     }
 
     return (
